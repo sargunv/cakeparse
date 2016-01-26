@@ -7,6 +7,9 @@ open class Lexer(val tokens: Set<TokenType>) {
     private val pattern: Pattern
 
     init {
+        if (tokens.isEmpty())
+            throw IllegalArgumentException("Must provide at least one token")
+
         pattern = Pattern.compile(
                 tokens.joinToString(separator = "|") {
                     val name = it.name

@@ -2,6 +2,7 @@ package me.sargunvohra.ktparse.test
 
 import me.sargunvohra.ktparse.example.CalculatorLexer
 import me.sargunvohra.ktparse.example.CalculatorToken
+import me.sargunvohra.ktparse.lexer.Lexer
 import me.sargunvohra.ktparse.lexer.LexerException
 import me.sargunvohra.ktparse.lexer.Token
 import org.jetbrains.spek.api.Spek
@@ -10,7 +11,16 @@ import kotlin.test.assertTrue
 
 class LexerSpecs: Spek() {
     init {
-        given("a lexer for calculator tokens") {
+
+        given("a lexer with no token types") {
+            on("instantiating the lexer") {
+                it("should fail") {
+                    assertFailsWith(IllegalArgumentException::class) { Lexer(emptySet()) }
+                }
+            }
+        }
+
+        given("a lexer with some token types") {
             val lexer = CalculatorLexer
 
             fun valid(desc: String, input: CharSequence, correct: List<Token>) {
