@@ -1,7 +1,7 @@
 package me.sargunvohra.ktparse.exception
 
-import me.sargunvohra.ktparse.lexer.Token
 import me.sargunvohra.ktparse.lexer.ITokenType
+import me.sargunvohra.ktparse.lexer.Token
 
 class UnexpectedTokenException(
         val expected: ITokenType?,
