@@ -9,6 +9,7 @@ val a = token("A", "A")
 val b = token("B", "B")
 val tokens = setOf(a, b)
 
+// grammar
 val unit = a and b map { it.first.raw + it.second.raw }
 val list = zeroOrMore(unit)
 val goal = list
@@ -17,7 +18,7 @@ fun main(vararg args: String) {
     val input = "ABABAB"
 
     try {
-        println("Result: ${tokens.lexer().lex(input).parseAll(goal).value}")
+        println("Result: ${tokens.lexer().lex(input).parseToEnd(goal).value}")
     } catch(e: LexerException) {
         println("Scanning error: ${e.message}")
     } catch(e: ParseException) {
