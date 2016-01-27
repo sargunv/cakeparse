@@ -11,9 +11,9 @@ fun <A> ref(parser: ()-> IParser<A>) = Parser { input ->
     parser().invoke(input)
 }
 
-fun <A> Sequence<Token>.parse(parser: IParser<A>) = parser(this)
+fun <A> Iterable<Token>.parse(parser: IParser<A>) = parser(this)
 
-fun <A> Sequence<Token>.parseAll(parser: IParser<A>): Result<A> {
+fun <A> Iterable<Token>.parseAll(parser: IParser<A>): Result<A> {
     val result = parser(this)
     result.remainder.firstOrNull()?.let {
         throw UnexpectedTokenException(null, it)

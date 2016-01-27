@@ -13,5 +13,5 @@ class BaseTokenType(
         override val pattern: String
 ): ITokenType, IParser<Token> {
     val parser = TokenParser(this)
-    override fun invoke(input: Sequence<Token>) = parser(input)
+    override fun invoke(input: Iterable<Token>) = parser(input)
 }

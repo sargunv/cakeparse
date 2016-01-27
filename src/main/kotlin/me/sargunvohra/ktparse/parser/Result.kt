@@ -4,5 +4,5 @@ import me.sargunvohra.ktparse.lexer.Token
 
 data class Result<out A>(
         val value: A,
-        val remainder: Sequence<Token>
+        val remainder: Iterable<Token>
 )
