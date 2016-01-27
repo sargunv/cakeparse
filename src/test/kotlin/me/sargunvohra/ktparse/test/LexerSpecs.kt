@@ -3,7 +3,7 @@ package me.sargunvohra.ktparse.test
 import me.sargunvohra.ktparse.example.CalculatorLexer
 import me.sargunvohra.ktparse.example.CalculatorToken
 import me.sargunvohra.ktparse.lexer.Lexer
-import me.sargunvohra.ktparse.lexer.LexerException
+import me.sargunvohra.ktparse.exception.LexerException
 import me.sargunvohra.ktparse.lexer.Token
 import org.jetbrains.spek.api.Spek
 import kotlin.test.assertFailsWith

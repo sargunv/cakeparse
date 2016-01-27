@@ -1,8 +1,9 @@
 package me.sargunvohra.ktparse.lexer
 
+import me.sargunvohra.ktparse.exception.LexerException
 import java.util.regex.Pattern
 
-open class Lexer(val tokens: Set<TokenType>) {
+open class Lexer(val tokens: Set<ITokenType>) {
 
     private val pattern: Pattern
 

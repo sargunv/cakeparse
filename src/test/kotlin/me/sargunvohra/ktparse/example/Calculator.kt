@@ -1,9 +1,9 @@
 package me.sargunvohra.ktparse.example
 
 import me.sargunvohra.ktparse.lexer.Lexer
-import me.sargunvohra.ktparse.lexer.TokenType
+import me.sargunvohra.ktparse.lexer.ITokenType
 
-enum class CalculatorToken(override val pattern: String): TokenType {
+enum class CalculatorToken(override val pattern: String): ITokenType {
     NUMBER  ("[0-9]+"),
     PLUS    ("\\+"),
     MINUS   ("\\-"),

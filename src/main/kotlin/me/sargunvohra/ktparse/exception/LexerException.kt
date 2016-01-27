@@ -1,4 +1,4 @@
-package me.sargunvohra.ktparse.lexer
+package me.sargunvohra.ktparse.exception
 
 class LexerException(
         val position: Int,
