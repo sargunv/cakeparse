@@ -1,6 +1,7 @@
 package me.sargunvohra.ktparse.example
 
 import me.sargunvohra.ktparse.api.*
+import me.sargunvohra.ktparse.parser.IParser
 
 object CalculatorExample {
     object Tokens {
@@ -11,8 +12,45 @@ object CalculatorExample {
         val over = token("over", "\\/")
         val lPar = token("lPar", "\\(")
         val rPar = token("rPar", "\\)")
-        val newLine = token("newline", "\\n")
-        val space = token("space", "[ \\t\\r]+")
+        val space = token("space", "[ \\t\\r\\n]+")
+    }
+
+    object Rules {
+        // convenience references for recursive rules
+        val exprRef: IParser<Int> = ref { expr }
+        val multExprRef: IParser<Int> = ref { multExpr }
+        val addExprRef: IParser<Int> = ref { addExpr }
+
+        // actual rules
+        val parenExpr = Tokens.lPar then exprRef before Tokens.rPar
+
+        val primExpr = Tokens.number map { it.raw.toInt() } or parenExpr
+
+        val multExpr = primExpr and optional((Tokens.times or Tokens.over) and multExprRef) map { exp ->
+            val (left, mult) = exp
+            mult?.let {
+                val (op, right) = it
+                when(op.type) {
+                    Tokens.times -> left * right
+                    Tokens.over -> left / right
+                    else -> throw IllegalStateException()
+                }
+            } ?: left
+        }
+
+        val addExpr = multExpr and optional((Tokens.plus or Tokens.minus) and addExprRef) map { exp ->
+            val (left, mult) = exp
+            mult?.let {
+                val (op, right) = it
+                when(op.type) {
+                    Tokens.plus -> left + right
+                    Tokens.minus -> left - right
+                    else -> throw IllegalStateException()
+                }
+            } ?: left
+        }
+
+        val expr: IParser<Int> = primExpr
     }
 
     val allTokens = setOf(
@@ -23,7 +61,6 @@ object CalculatorExample {
             Tokens.over,
             Tokens.lPar,
             Tokens.rPar,
-            Tokens.newLine,
             Tokens.space
     )
 }

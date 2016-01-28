@@ -10,7 +10,7 @@ import org.jetbrains.spek.api.Spek
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
-class LexerSpecs: Spek() {
+class LexerTests : Spek() {
     init {
 
         given("a lexer with no token types") {
@@ -70,9 +70,7 @@ class LexerSpecs: Spek() {
                     Token(Tokens.number, "3", 18),
                     Token(Tokens.rPar, ")", 19),
                     Token(Tokens.rPar, ")", 20),
-                    Token(Tokens.space, " ", 21),
-                    Token(Tokens.newLine, "\n", 22),
-                    Token(Tokens.space, "\r", 23)
+                    Token(Tokens.space, " \n\r", 21)
             ))
 
             invalid("lexing an input with an invalid token in the middle", "   1+3*(4\ta\t/(5-3)) \n\r", 10, 'a')
