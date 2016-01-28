@@ -18,7 +18,7 @@ val p = kotlinProject {
     }
 
     sourceDirectoriesTest {
-		path("src/test/kotlin")
+        path("src/test/kotlin")
         path("src/test/resources")
     }
 
@@ -26,15 +26,15 @@ val p = kotlinProject {
     }
 
     dependenciesTest {
-		compile("org.jetbrains.spek:spek:0.1.188")
+        compile("org.jetbrains.spek:spek:0.1.188")
     }
 
     assemble {
         jar {
         }
     }
-	
-	test {
-		includes("**/*Tests.class", "**/*Test.class")
-	}
+
+    test {
+        includes("**/*Tests.class", "**/*Test.class")
+    }
 }
