@@ -1,8 +1,8 @@
-package me.sargunvohra.ktparse.api
+package me.sargunvohra.parsek.api
 
-import me.sargunvohra.ktparse.parser.IParser
-import me.sargunvohra.ktparse.parser.Parser
-import me.sargunvohra.ktparse.parser.Result
+import me.sargunvohra.parsek.parser.IParser
+import me.sargunvohra.parsek.parser.Parser
+import me.sargunvohra.parsek.parser.Result
 
 fun <A> ref(parser: ()-> IParser<A>) = Parser { input -> parser().invoke(input) }
 

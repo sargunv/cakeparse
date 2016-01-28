@@ -1,7 +1,7 @@
-package me.sargunvohra.ktparse.example
+package me.sargunvohra.parsek.example
 
-import me.sargunvohra.ktparse.api.*
-import me.sargunvohra.ktparse.parser.IParser
+import me.sargunvohra.parsek.api.*
+import me.sargunvohra.parsek.parser.IParser
 
 object CalculatorExample {
     object Tokens {

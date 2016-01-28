@@ -1,8 +1,8 @@
-package me.sargunvohra.ktparse.test
+package me.sargunvohra.parsek.test
 
-import me.sargunvohra.ktparse.api.lexer
-import me.sargunvohra.ktparse.api.parseToEnd
-import me.sargunvohra.ktparse.example.CalculatorExample
+import me.sargunvohra.parsek.api.lexer
+import me.sargunvohra.parsek.api.parseToEnd
+import me.sargunvohra.parsek.example.CalculatorExample
 import org.jetbrains.spek.api.Spek
 import kotlin.test.assertEquals
 

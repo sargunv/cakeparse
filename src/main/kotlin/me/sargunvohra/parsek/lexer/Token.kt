@@ -1,4 +1,4 @@
-package me.sargunvohra.ktparse.lexer
+package me.sargunvohra.parsek.lexer
 
 data class Token(
         val type: ITokenType,

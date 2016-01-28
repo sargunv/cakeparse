@@ -1,9 +1,9 @@
-package me.sargunvohra.ktparse.api
+package me.sargunvohra.parsek.api
 
-import me.sargunvohra.ktparse.exception.ParseException
-import me.sargunvohra.ktparse.parser.IParser
-import me.sargunvohra.ktparse.parser.Parser
-import me.sargunvohra.ktparse.parser.Result
+import me.sargunvohra.parsek.exception.ParseException
+import me.sargunvohra.parsek.parser.IParser
+import me.sargunvohra.parsek.parser.Parser
+import me.sargunvohra.parsek.parser.Result
 
 infix fun <A, B> IParser<A>.and(other: IParser<B>) = Parser { input ->
     val result1 = this(input)

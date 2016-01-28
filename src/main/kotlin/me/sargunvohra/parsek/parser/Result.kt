@@ -1,6 +1,6 @@
-package me.sargunvohra.ktparse.parser
+package me.sargunvohra.parsek.parser
 
-import me.sargunvohra.ktparse.lexer.Token
+import me.sargunvohra.parsek.lexer.Token
 
 data class Result<out A>(
         val value: A,

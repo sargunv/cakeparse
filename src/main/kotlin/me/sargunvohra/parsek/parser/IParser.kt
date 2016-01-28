@@ -1,6 +1,6 @@
-package me.sargunvohra.ktparse.parser
+package me.sargunvohra.parsek.parser
 
-import me.sargunvohra.ktparse.lexer.Token
+import me.sargunvohra.parsek.lexer.Token
 
 interface IParser<out A> {
     operator fun invoke(input: Iterable<Token>): Result<A>

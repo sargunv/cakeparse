@@ -1,9 +1,9 @@
-package me.sargunvohra.ktparse.api
+package me.sargunvohra.parsek.api
 
-import me.sargunvohra.ktparse.exception.UnexpectedTokenException
-import me.sargunvohra.ktparse.lexer.Token
-import me.sargunvohra.ktparse.parser.IParser
-import me.sargunvohra.ktparse.parser.Result
+import me.sargunvohra.parsek.exception.UnexpectedTokenException
+import me.sargunvohra.parsek.lexer.Token
+import me.sargunvohra.parsek.parser.IParser
+import me.sargunvohra.parsek.parser.Result
 
 fun <A> Iterable<Token>.parseToGoal(parser: IParser<A>) = parser(this)
 

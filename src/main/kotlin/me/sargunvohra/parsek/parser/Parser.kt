@@ -1,6 +1,6 @@
-package me.sargunvohra.ktparse.parser
+package me.sargunvohra.parsek.parser
 
-import me.sargunvohra.ktparse.lexer.Token
+import me.sargunvohra.parsek.lexer.Token
 
 class Parser<out A>(val func: (Iterable<Token>) -> Result<A>): IParser<A> {
     override fun invoke(input: Iterable<Token>) = func(input)

@@ -1,11 +1,11 @@
-package me.sargunvohra.ktparse.test
+package me.sargunvohra.parsek.test
 
-import me.sargunvohra.ktparse.api.*
-import me.sargunvohra.ktparse.example.CalculatorExample
-import me.sargunvohra.ktparse.example.CalculatorExample.Tokens
-import me.sargunvohra.ktparse.exception.LexerException
-import me.sargunvohra.ktparse.lexer.Lexer
-import me.sargunvohra.ktparse.lexer.Token
+import me.sargunvohra.parsek.api.*
+import me.sargunvohra.parsek.example.CalculatorExample
+import me.sargunvohra.parsek.example.CalculatorExample.Tokens
+import me.sargunvohra.parsek.exception.LexerException
+import me.sargunvohra.parsek.lexer.Lexer
+import me.sargunvohra.parsek.lexer.Token
 import org.jetbrains.spek.api.Spek
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
