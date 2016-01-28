@@ -7,7 +7,7 @@ val repos = repos()
 
 val p = kotlinProject {
 
-    name = "kake"
+    name = "CakeParse"
     group = "me.sargunvohra.lib"
     artifactId = name
     version = "0.1.0-SNAPSHOT"
@@ -31,6 +31,7 @@ val p = kotlinProject {
 
     assemble {
         jar {
+            fatJar = false
         }
     }
 
