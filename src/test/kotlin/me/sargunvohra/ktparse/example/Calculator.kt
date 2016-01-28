@@ -50,7 +50,7 @@ object CalculatorExample {
             } ?: left
         }
 
-        val expr: IParser<Int> = primExpr
+        val expr: IParser<Int> = addExpr
     }
 
     val allTokens = setOf(
