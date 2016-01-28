@@ -1,9 +1,10 @@
 package me.sargunvohra.ktparse.test
 
-import me.sargunvohra.ktparse.example.CalculatorLexer
-import me.sargunvohra.ktparse.example.CalculatorToken
-import me.sargunvohra.ktparse.lexer.Lexer
+import me.sargunvohra.ktparse.api.*
+import me.sargunvohra.ktparse.example.CalculatorExample
+import me.sargunvohra.ktparse.example.CalculatorExample.Tokens
 import me.sargunvohra.ktparse.exception.LexerException
+import me.sargunvohra.ktparse.lexer.Lexer
 import me.sargunvohra.ktparse.lexer.Token
 import org.jetbrains.spek.api.Spek
 import kotlin.test.assertFailsWith
@@ -21,7 +22,7 @@ class LexerSpecs: Spek() {
         }
 
         given("a lexer with some token types") {
-            val lexer = CalculatorLexer
+            val lexer = CalculatorExample.allTokens.lexer()
 
             fun valid(desc: String, input: CharSequence, correct: List<Token>) {
                 on(desc) {
@@ -53,25 +54,25 @@ class LexerSpecs: Spek() {
 
             valid("lexing an empty input", "", emptyList())
             valid("lexing a valid input", "   1+3*(400\t\t/(-5-3)) \n\r", listOf(
-                    Token(CalculatorToken.SPACE, "   ", 0),
-                    Token(CalculatorToken.NUMBER, "1", 3),
-                    Token(CalculatorToken.PLUS, "+", 4),
-                    Token(CalculatorToken.NUMBER, "3", 5),
-                    Token(CalculatorToken.TIMES, "*", 6),
-                    Token(CalculatorToken.LPAR, "(", 7),
-                    Token(CalculatorToken.NUMBER, "400", 8),
-                    Token(CalculatorToken.SPACE, "\t\t", 11),
-                    Token(CalculatorToken.OVER, "/", 13),
-                    Token(CalculatorToken.LPAR, "(", 14),
-                    Token(CalculatorToken.MINUS, "-", 15),
-                    Token(CalculatorToken.NUMBER, "5", 16),
-                    Token(CalculatorToken.MINUS, "-", 17),
-                    Token(CalculatorToken.NUMBER, "3", 18),
-                    Token(CalculatorToken.RPAR, ")", 19),
-                    Token(CalculatorToken.RPAR, ")", 20),
-                    Token(CalculatorToken.SPACE, " ", 21),
-                    Token(CalculatorToken.NEWLINE, "\n", 22),
-                    Token(CalculatorToken.SPACE, "\r", 23)
+                    Token(Tokens.space, "   ", 0),
+                    Token(Tokens.number, "1", 3),
+                    Token(Tokens.plus, "+", 4),
+                    Token(Tokens.number, "3", 5),
+                    Token(Tokens.times, "*", 6),
+                    Token(Tokens.lPar, "(", 7),
+                    Token(Tokens.number, "400", 8),
+                    Token(Tokens.space, "\t\t", 11),
+                    Token(Tokens.over, "/", 13),
+                    Token(Tokens.lPar, "(", 14),
+                    Token(Tokens.minus, "-", 15),
+                    Token(Tokens.number, "5", 16),
+                    Token(Tokens.minus, "-", 17),
+                    Token(Tokens.number, "3", 18),
+                    Token(Tokens.rPar, ")", 19),
+                    Token(Tokens.rPar, ")", 20),
+                    Token(Tokens.space, " ", 21),
+                    Token(Tokens.newLine, "\n", 22),
+                    Token(Tokens.space, "\r", 23)
             ))
 
             invalid("lexing an input with an invalid token in the middle", "   1+3*(4\ta\t/(5-3)) \n\r", 10, 'a')
