@@ -1,9 +1,9 @@
-package me.sargunvohra.lib.kake.api
+package me.sargunvohra.lib.cakeparse.api
 
-import me.sargunvohra.lib.kake.exception.ParseException
-import me.sargunvohra.lib.kake.parser.IParser
-import me.sargunvohra.lib.kake.parser.Parser
-import me.sargunvohra.lib.kake.parser.Result
+import me.sargunvohra.lib.cakeparse.exception.ParseException
+import me.sargunvohra.lib.cakeparse.parser.IParser
+import me.sargunvohra.lib.cakeparse.parser.Parser
+import me.sargunvohra.lib.cakeparse.parser.Result
 
 infix fun <A, B> IParser<A>.and(other: IParser<B>) = Parser { input ->
     val result1 = this(input)

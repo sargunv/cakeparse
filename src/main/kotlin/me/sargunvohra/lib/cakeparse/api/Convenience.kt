@@ -1,8 +1,8 @@
-package me.sargunvohra.lib.kake.api
+package me.sargunvohra.lib.cakeparse.api
 
-import me.sargunvohra.lib.kake.parser.IParser
-import me.sargunvohra.lib.kake.parser.Parser
-import me.sargunvohra.lib.kake.parser.Result
+import me.sargunvohra.lib.cakeparse.parser.IParser
+import me.sargunvohra.lib.cakeparse.parser.Parser
+import me.sargunvohra.lib.cakeparse.parser.Result
 
 fun <A> ref(parser: ()-> IParser<A>) = Parser { input -> parser().invoke(input) }
 

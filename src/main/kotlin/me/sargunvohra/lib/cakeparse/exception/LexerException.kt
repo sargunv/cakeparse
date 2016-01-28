@@ -1,4 +1,4 @@
-package me.sargunvohra.lib.kake.exception
+package me.sargunvohra.lib.cakeparse.exception
 
 class LexerException(
         val position: Int,

@@ -1,9 +1,9 @@
-package me.sargunvohra.lib.kake.api
+package me.sargunvohra.lib.cakeparse.api
 
-import me.sargunvohra.lib.kake.exception.UnexpectedTokenException
-import me.sargunvohra.lib.kake.lexer.Token
-import me.sargunvohra.lib.kake.parser.IParser
-import me.sargunvohra.lib.kake.parser.Result
+import me.sargunvohra.lib.cakeparse.exception.UnexpectedTokenException
+import me.sargunvohra.lib.cakeparse.lexer.Token
+import me.sargunvohra.lib.cakeparse.parser.IParser
+import me.sargunvohra.lib.cakeparse.parser.Result
 
 fun <A> Iterable<Token>.parseToGoal(parser: IParser<A>) = parser(this)
 

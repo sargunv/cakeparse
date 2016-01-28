@@ -1,4 +1,4 @@
-package me.sargunvohra.lib.kake.lexer
+package me.sargunvohra.lib.cakeparse.lexer
 
 data class Token(
         val type: ITokenType,

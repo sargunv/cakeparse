@@ -1,11 +1,11 @@
-package me.sargunvohra.lib.kake.test
+package me.sargunvohra.lib.cakeparse.test
 
-import me.sargunvohra.lib.kake.api.lexer
-import me.sargunvohra.lib.kake.example.CalculatorExample
-import me.sargunvohra.lib.kake.example.CalculatorExample.Tokens
-import me.sargunvohra.lib.kake.exception.LexerException
-import me.sargunvohra.lib.kake.lexer.Lexer
-import me.sargunvohra.lib.kake.lexer.Token
+import me.sargunvohra.lib.cakeparse.api.lexer
+import me.sargunvohra.lib.cakeparse.example.CalculatorExample
+import me.sargunvohra.lib.cakeparse.example.CalculatorExample.Tokens
+import me.sargunvohra.lib.cakeparse.exception.LexerException
+import me.sargunvohra.lib.cakeparse.lexer.Lexer
+import me.sargunvohra.lib.cakeparse.lexer.Token
 import org.jetbrains.spek.api.Spek
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith

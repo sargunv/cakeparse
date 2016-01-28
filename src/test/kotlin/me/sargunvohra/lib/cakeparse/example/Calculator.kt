@@ -1,7 +1,7 @@
-package me.sargunvohra.lib.kake.example
+package me.sargunvohra.lib.cakeparse.example
 
-import me.sargunvohra.lib.kake.api.*
-import me.sargunvohra.lib.kake.parser.IParser
+import me.sargunvohra.lib.cakeparse.api.*
+import me.sargunvohra.lib.cakeparse.parser.IParser
 
 object CalculatorExample {
     object Tokens {

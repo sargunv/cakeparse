@@ -1,6 +1,6 @@
-package me.sargunvohra.lib.kake.lexer
+package me.sargunvohra.lib.cakeparse.lexer
 
-import me.sargunvohra.lib.kake.exception.LexerException
+import me.sargunvohra.lib.cakeparse.exception.LexerException
 import java.util.regex.Pattern
 
 open class Lexer(val tokens: Set<ITokenType>) {

@@ -1,7 +1,7 @@
-package me.sargunvohra.lib.kake.exception
+package me.sargunvohra.lib.cakeparse.exception
 
-import me.sargunvohra.lib.kake.lexer.ITokenType
-import me.sargunvohra.lib.kake.lexer.Token
+import me.sargunvohra.lib.cakeparse.lexer.ITokenType
+import me.sargunvohra.lib.cakeparse.lexer.Token
 
 class UnexpectedTokenException(
         val expected: ITokenType?,
