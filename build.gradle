@@ -1,8 +1,7 @@
-group 'me.sargunvohra.lib'
-artifactId 'kake'
-version '0.1.0-SNAPSHOT'
-
 buildscript {
+	ext {
+		kotlinVersion = '1.0.0-beta-4584'
+	}
     repositories {
         mavenCentral()
         maven {
@@ -10,12 +9,14 @@ buildscript {
         }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.0-beta-4584"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
-apply plugin: 'java'
 apply plugin: 'kotlin'
+
+group 'me.sargunvohra.lib.kake'
+version '0.1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -28,6 +29,6 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.0-beta-4584"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     testCompile 'org.jetbrains.spek:spek:0.1.188'
 }
