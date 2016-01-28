@@ -12,7 +12,7 @@ object CalculatorExample {
         val over = token("over", "\\/")
         val lPar = token("lPar", "\\(")
         val rPar = token("rPar", "\\)")
-        val space = token("space", "[ \\t\\r\\n]+")
+        val space = token("space", "[ \\t\\r\\n]+", ignore = true)
     }
 
     object Rules {

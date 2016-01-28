@@ -8,9 +8,10 @@ import me.sargunvohra.lib.cakeparse.lexer.Token
 class TokenParser(
         val type: ITokenType
 ): IParser<Token> {
-    override fun invoke(input: Iterable<Token>) = input.firstOrNull()?.let { token ->
-        when(token.type) {
-            type -> Result(token, input.drop(1))
+    override fun invoke(input: Iterable<Token>): Result<Token> = input.firstOrNull()?.let { token ->
+        when {
+            token.type == type -> Result(token, input.drop(1))
+            token.type.ignore -> this(input.drop(1))
             else -> throw UnexpectedTokenException(type, token)
         }
     } ?: throw EndOfFileException(type)

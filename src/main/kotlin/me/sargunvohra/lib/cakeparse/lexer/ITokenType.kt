@@ -6,11 +6,13 @@ import me.sargunvohra.lib.cakeparse.parser.TokenParser
 interface ITokenType {
     val name: String
     val pattern: String
+    val ignore: Boolean
 }
 
 class BaseTokenType(
         override val name: String,
-        override val pattern: String
+        override val pattern: String,
+        override val ignore: Boolean = false
 ): ITokenType, IParser<Token> {
 
     init {

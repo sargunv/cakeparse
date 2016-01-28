@@ -9,7 +9,7 @@ fun <A> Iterable<Token>.parseToGoal(parser: IParser<A>) = parser(this)
 
 fun <A> Iterable<Token>.parseToEnd(parser: IParser<A>): Result<A> {
     val result = this.parseToGoal(parser)
-    result.remainder.firstOrNull()?.let {
+    result.remainder.filter { !it.type.ignore }.firstOrNull()?.let {
         throw UnexpectedTokenException(null, it)
     }
     return result
