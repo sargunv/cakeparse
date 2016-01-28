@@ -1,6 +1,6 @@
-package me.sargunvohra.parsek.exception
+package me.sargunvohra.lib.kake.exception
 
-import me.sargunvohra.parsek.lexer.ITokenType
+import me.sargunvohra.lib.kake.lexer.ITokenType
 
 class EndOfFileException(
         val expected: ITokenType

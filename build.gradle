@@ -1,5 +1,5 @@
-group 'me.sargunvohra'
-artifactId 'parsek'
+group 'me.sargunvohra.lib'
+artifactId 'kake'
 version '0.1.0-SNAPSHOT'
 
 buildscript {
@@ -16,8 +16,6 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
-
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()

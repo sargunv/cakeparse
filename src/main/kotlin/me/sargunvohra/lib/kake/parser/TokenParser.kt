@@ -1,9 +1,9 @@
-package me.sargunvohra.parsek.parser
+package me.sargunvohra.lib.kake.parser
 
-import me.sargunvohra.parsek.exception.EndOfFileException
-import me.sargunvohra.parsek.exception.UnexpectedTokenException
-import me.sargunvohra.parsek.lexer.ITokenType
-import me.sargunvohra.parsek.lexer.Token
+import me.sargunvohra.lib.kake.exception.EndOfFileException
+import me.sargunvohra.lib.kake.exception.UnexpectedTokenException
+import me.sargunvohra.lib.kake.lexer.ITokenType
+import me.sargunvohra.lib.kake.lexer.Token
 
 class TokenParser(
         val type: ITokenType

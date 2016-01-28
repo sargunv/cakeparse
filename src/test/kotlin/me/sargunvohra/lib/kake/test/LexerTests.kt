@@ -1,12 +1,13 @@
-package me.sargunvohra.parsek.test
+package me.sargunvohra.lib.kake.test
 
-import me.sargunvohra.parsek.api.*
-import me.sargunvohra.parsek.example.CalculatorExample
-import me.sargunvohra.parsek.example.CalculatorExample.Tokens
-import me.sargunvohra.parsek.exception.LexerException
-import me.sargunvohra.parsek.lexer.Lexer
-import me.sargunvohra.parsek.lexer.Token
+import me.sargunvohra.lib.kake.api.lexer
+import me.sargunvohra.lib.kake.example.CalculatorExample
+import me.sargunvohra.lib.kake.example.CalculatorExample.Tokens
+import me.sargunvohra.lib.kake.exception.LexerException
+import me.sargunvohra.lib.kake.lexer.Lexer
+import me.sargunvohra.lib.kake.lexer.Token
 import org.jetbrains.spek.api.Spek
+import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
@@ -44,10 +45,10 @@ class LexerTests : Spek() {
                         ex = assertFailsWith(LexerException::class) { result.forEach { } }
                     }
                     it("should report the proper error position") {
-                        kotlin.test.assertEquals(pos, ex?.position)
+                        assertEquals(pos, ex?.position)
                     }
                     it("should report the proper error character") {
-                        kotlin.test.assertEquals(char, ex?.char)
+                        assertEquals(char, ex?.char)
                     }
                 }
             }

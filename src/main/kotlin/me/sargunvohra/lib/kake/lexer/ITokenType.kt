@@ -1,7 +1,7 @@
-package me.sargunvohra.parsek.lexer
+package me.sargunvohra.lib.kake.lexer
 
-import me.sargunvohra.parsek.parser.IParser
-import me.sargunvohra.parsek.parser.TokenParser
+import me.sargunvohra.lib.kake.parser.IParser
+import me.sargunvohra.lib.kake.parser.TokenParser
 
 interface ITokenType {
     val name: String
