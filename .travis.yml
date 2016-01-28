@@ -1,9 +1,6 @@
 language: java
 
-before_cache:
-  - rm -rf $HOME/.gradle/caches/modules-2/modules-2.lock
+jdk:
+  - oraclejdk8
 
-cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+script: ./kobaltw test --log 1
