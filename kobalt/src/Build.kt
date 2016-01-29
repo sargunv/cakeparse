@@ -4,7 +4,7 @@ import com.beust.kobalt.plugin.kotlin.*
 
 val repos = repos()
 
-val kotlinVersion = "1.0.0-beta-4589"
+val kotlinVersion = "1.0.0-beta-4584"
 val cucumberVersion = "1.2.5-SNAPSHOT"
 
 val p = kotlinProject {
@@ -26,6 +26,7 @@ val p = kotlinProject {
 
     dependencies {
         compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+        compile("org.jetbrains.kotlin:kotlin-runtime:$kotlinVersion")
     }
 
     dependenciesTest {
