@@ -23,45 +23,17 @@ Feature: Lexing
 
   Scenario: Lexing a complex valid input
     When it lexes the input "1+3*(400/(5-3))"
-    Then the tokens are:
-      | number |
-      | plus   |
-      | number |
-      | times  |
-      | lPar   |
-      | number |
-      | over   |
-      | lPar   |
-      | number |
-      | minus  |
-      | number |
-      | rPar   |
-      | rPar   |
-    And the raw values are:
-      | 1   |
-      | +   |
-      | 3   |
-      | *   |
-      | (   |
-      | 400 |
-      | /   |
-      | (   |
-      | 5   |
-      | -   |
-      | 3   |
-      | )   |
-      | )   |
-    And the positions are:
-      | 0  |
-      | 1  |
-      | 2  |
-      | 3  |
-      | 4  |
-      | 5  |
-      | 8  |
-      | 9  |
-      | 10 |
-      | 11 |
-      | 12 |
-      | 13 |
-      | 14 |
+    Then the token types, raw values, and positions are:
+      | number | 1   | 0  |
+      | plus   | +   | 1  |
+      | number | 3   | 2  |
+      | times  | *   | 3  |
+      | lPar   | (   | 4  |
+      | number | 400 | 5  |
+      | over   | /   | 8  |
+      | lPar   | (   | 9  |
+      | number | 5   | 10 |
+      | minus  | -   | 11 |
+      | number | 3   | 12 |
+      | rPar   | )   | 13 |
+      | rPar   | )   | 14 |

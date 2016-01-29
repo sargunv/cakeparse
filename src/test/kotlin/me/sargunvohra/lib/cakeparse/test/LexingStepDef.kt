@@ -1,5 +1,6 @@
 package me.sargunvohra.lib.cakeparse.test
 
+import cucumber.api.DataTable
 import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
@@ -40,18 +41,14 @@ class LexingStepDef() {
         assertEquals(pos, e.position)
     }
 
-    @Then("^the tokens are:$")
-    fun tokensAre(names: List<String>) {
-        assertEquals(names, result.map { it.type.name })
-    }
-
-    @Then("^the raw values are:$")
-    fun rawValuesAre(values: List<String>) {
-        assertEquals(values, result.map { it.raw })
-    }
-
-    @Then("^the positions are:$")
-    fun positionsAre(positions: List<Int>) {
-        assertEquals(positions, result.map { it.position })
+    @Then("^the token types, raw values, and positions are:$")
+    fun tokensAre(table: DataTable) {
+        val rows = table.gherkinRows
+        result.zip(rows).forEach {
+            val (tok, row) = it
+            assertEquals("token type", tok.type.name, row.cells[0])
+            assertEquals("token raw value", tok.raw, row.cells[1])
+            assertEquals("token position", tok.position, row.cells[2].toInt())
+        }
     }
 }
