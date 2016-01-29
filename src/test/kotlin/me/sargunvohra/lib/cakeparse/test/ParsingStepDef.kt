@@ -7,10 +7,9 @@ import me.sargunvohra.lib.cakeparse.api.lexer
 import me.sargunvohra.lib.cakeparse.api.parseToEnd
 import me.sargunvohra.lib.cakeparse.example.CalculatorExample
 import me.sargunvohra.lib.cakeparse.lexer.Lexer
-import me.sargunvohra.lib.cakeparse.lexer.Token
 import me.sargunvohra.lib.cakeparse.parser.IParser
 import me.sargunvohra.lib.cakeparse.parser.Result
-import org.junit.Assert.*
+import kotlin.test.assertEquals
 
 class ParsingStepDef() {
 

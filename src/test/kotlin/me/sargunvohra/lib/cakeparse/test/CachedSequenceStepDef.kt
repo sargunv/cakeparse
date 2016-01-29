@@ -4,7 +4,7 @@ import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
 import me.sargunvohra.lib.common.CachedSequence
 import me.sargunvohra.lib.common.cached
-import org.junit.Assert.*
+import kotlin.test.assertEquals
 
 class CachedSequenceStepDef {
 

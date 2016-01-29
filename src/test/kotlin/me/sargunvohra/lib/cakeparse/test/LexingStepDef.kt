@@ -9,8 +9,9 @@ import me.sargunvohra.lib.cakeparse.example.CalculatorExample
 import me.sargunvohra.lib.cakeparse.exception.LexerException
 import me.sargunvohra.lib.cakeparse.lexer.Lexer
 import me.sargunvohra.lib.cakeparse.lexer.Token
-import org.junit.Assert.*
+import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertNull
 
 class LexingStepDef() {
 
@@ -46,9 +47,9 @@ class LexingStepDef() {
         val rows = table.gherkinRows
         result.asIterable().zip(rows).forEach {
             val (tok, row) = it
-            assertEquals("token type", tok.type.name, row.cells[0])
-            assertEquals("token raw value", tok.raw, row.cells[1])
-            assertEquals("token position", tok.position, row.cells[2].toInt())
+            assertEquals(tok.type.name, row.cells[0], "token type")
+            assertEquals(tok.raw, row.cells[1], "token raw value")
+            assertEquals(tok.position, row.cells[2].toInt(), "token position")
         }
     }
 }
