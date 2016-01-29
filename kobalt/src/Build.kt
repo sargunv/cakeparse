@@ -4,6 +4,8 @@ import com.beust.kobalt.plugin.kotlin.*
 
 val repos = repos()
 
+val kotlinVersion = "1.0.0-beta-4589"
+val cucumberVersion = "1.2.5-SNAPSHOT"
 
 val p = kotlinProject {
 
@@ -23,15 +25,18 @@ val p = kotlinProject {
     }
 
     dependencies {
+        compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     }
 
     dependenciesTest {
-        compile("org.jetbrains.spek:spek:0.1.188")
+        compile("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+        compile("info.cukes:cucumber-junit:$cucumberVersion")
+        compile("info.cukes:cucumber-java8:$cucumberVersion")
+        compile("info.cukes:cucumber-picocontainer:$cucumberVersion")
     }
 
     assemble {
         jar {
-            fatJar = false
         }
     }
 
