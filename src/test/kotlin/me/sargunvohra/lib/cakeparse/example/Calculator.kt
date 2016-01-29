@@ -30,7 +30,7 @@ object CalculatorExample {
             val (left, mult) = exp
             mult?.let {
                 val (op, right) = it
-                when(op.type) {
+                when (op.type) {
                     Tokens.times -> left * right
                     Tokens.over -> left / right
                     else -> throw IllegalStateException()
@@ -42,7 +42,7 @@ object CalculatorExample {
             val (left, mult) = exp
             mult?.let {
                 val (op, right) = it
-                when(op.type) {
+                when (op.type) {
                     Tokens.plus -> left + right
                     Tokens.minus -> left - right
                     else -> throw IllegalStateException()

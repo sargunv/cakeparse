@@ -6,9 +6,9 @@ class CachedSequence<out T> private constructor(
         private val source: Iterator<T>,
         private val cache: ArrayList<T>,
         private val startAt: Int
-): Sequence<T> {
+) : Sequence<T> {
 
-    constructor(source: Sequence<T>): this(source.iterator(), ArrayList(), 0)
+    constructor(source: Sequence<T>) : this(source.iterator(), ArrayList(), 0)
 
     override fun iterator(): Iterator<T> {
         return object : Iterator<T> {

@@ -36,7 +36,7 @@ class LexingStepDef() {
     @Then("^lexing fails with character '(.)' at position (\\d)$")
     fun lexingFailed(char: Char, pos: Int) {
         val e: LexerException = assertFailsWith(LexerException::class) {
-            result.forEach {  }
+            result.forEach { }
         }
         assertEquals(char, e.char)
         assertEquals(pos, e.position)

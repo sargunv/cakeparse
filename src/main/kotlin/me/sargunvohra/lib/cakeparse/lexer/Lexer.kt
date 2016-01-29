@@ -20,12 +20,12 @@ open class Lexer(val tokens: Set<ITokenType>) {
         );
     }
 
-    fun lex(input: CharSequence) = object: Sequence<Token> {
+    fun lex(input: CharSequence) = object : Sequence<Token> {
 
         override fun iterator(): Iterator<Token> {
             val matcher = pattern.matcher(input)
 
-            return object: Iterator<Token> {
+            return object : Iterator<Token> {
 
                 override fun hasNext(): Boolean {
                     return matcher.lookingAt() || !matcher.hitEnd()

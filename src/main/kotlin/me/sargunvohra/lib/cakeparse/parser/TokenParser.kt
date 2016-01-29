@@ -8,7 +8,7 @@ import me.sargunvohra.lib.common.CachedSequence
 
 class TokenParser(
         val type: ITokenType
-): IParser<Token> {
+) : IParser<Token> {
     override fun eat(input: CachedSequence<Token>): Result<Token> = input.firstOrNull()?.let { token ->
         when {
             token.type == type -> Result(token, input.drop(1))

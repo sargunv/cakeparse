@@ -4,7 +4,7 @@ import me.sargunvohra.lib.cakeparse.parser.IParser
 import me.sargunvohra.lib.cakeparse.parser.Parser
 import me.sargunvohra.lib.cakeparse.parser.Result
 
-fun <A> ref(parser: ()-> IParser<A>) = Parser { input -> parser().eat(input) }
+fun <A> ref(parser: () -> IParser<A>) = Parser { input -> parser().eat(input) }
 
 fun <A> empty(): Parser<A?> = Parser { input -> Result<A?>(null, input) }
 
