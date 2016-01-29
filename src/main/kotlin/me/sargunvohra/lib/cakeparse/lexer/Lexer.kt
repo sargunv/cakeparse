@@ -20,7 +20,7 @@ open class Lexer(val tokens: Set<ITokenType>) {
         );
     }
 
-    fun lex(input: CharSequence) = object: Iterable<Token> {
+    fun lex(input: CharSequence) = object: Sequence<Token> {
 
         override fun iterator(): Iterator<Token> {
             val matcher = pattern.matcher(input)

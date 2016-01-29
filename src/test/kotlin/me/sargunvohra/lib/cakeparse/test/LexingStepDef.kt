@@ -15,7 +15,7 @@ import kotlin.test.assertFailsWith
 class LexingStepDef() {
 
     lateinit var lexer: Lexer
-    lateinit var result: Iterable<Token>
+    lateinit var result: Sequence<Token>
 
     @Given("^a lexer for calculator tokens$")
     fun givenCalculatorTokenLexer() {
@@ -44,7 +44,7 @@ class LexingStepDef() {
     @Then("^the token types, raw values, and positions are:$")
     fun tokensAre(table: DataTable) {
         val rows = table.gherkinRows
-        result.zip(rows).forEach {
+        result.asIterable().zip(rows).forEach {
             val (tok, row) = it
             assertEquals("token type", tok.type.name, row.cells[0])
             assertEquals("token raw value", tok.raw, row.cells[1])

@@ -1,7 +1,8 @@
 package me.sargunvohra.lib.cakeparse.parser
 
 import me.sargunvohra.lib.cakeparse.lexer.Token
+import me.sargunvohra.lib.common.CachedSequence
 
 interface IParser<out A> {
-    operator fun invoke(input: Iterable<Token>): Result<A>
+    fun eat(input: CachedSequence<Token>): Result<A>
 }
