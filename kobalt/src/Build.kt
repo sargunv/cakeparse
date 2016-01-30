@@ -51,6 +51,8 @@ val p = kotlinProject {
     }
 
     github {
+        file("$buildDirectory/libs/$name-$version.jar", "$name/$version/$name-$version.jar")
+        description = "$name release $version"
     }
 
     test {
