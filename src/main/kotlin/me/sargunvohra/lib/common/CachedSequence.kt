@@ -47,6 +47,6 @@ class CachedSequence<out T> private constructor(
 }
 
 /**
- * @return a new [CachedSequence] based on this input sequence. Can be used to undo a [constrainOnce]
+ * @return a new [CachedSequence] based on this input sequence.
  */
 fun <T> Sequence<T>.cached() = CachedSequence(this)
