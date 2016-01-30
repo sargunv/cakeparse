@@ -38,6 +38,23 @@ Feature: Lexing
       | rPar   | )   | 13 |
       | rPar   | )   | 14 |
 
+  Scenario: Lexing a complex valid input from a stream
+    When it lexes the InputStream 1+3*(400/(5-3))
+    Then the token types, raw values, and positions are:
+      | number | 1   | 0  |
+      | plus   | +   | 1  |
+      | number | 3   | 2  |
+      | times  | *   | 3  |
+      | lPar   | (   | 4  |
+      | number | 400 | 5  |
+      | over   | /   | 8  |
+      | lPar   | (   | 9  |
+      | number | 5   | 10 |
+      | minus  | -   | 11 |
+      | number | 3   | 12 |
+      | rPar   | )   | 13 |
+      | rPar   | )   | 14 |
+
   Scenario: Lexing a a multiline input
     When it lexes the input
     """

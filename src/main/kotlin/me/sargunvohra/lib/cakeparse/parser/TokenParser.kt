@@ -6,9 +6,7 @@ import me.sargunvohra.lib.cakeparse.lexer.ITokenType
 import me.sargunvohra.lib.cakeparse.lexer.Token
 import me.sargunvohra.lib.common.CachedSequence
 
-class TokenParser(
-        val type: ITokenType
-) : IParser<Token> {
+class TokenParser(val type: ITokenType) : IParser<Token> {
     override fun eat(input: CachedSequence<Token>): Result<Token> = input.firstOrNull()?.let { token ->
         when {
             token.type == type -> Result(token, input.drop(1))

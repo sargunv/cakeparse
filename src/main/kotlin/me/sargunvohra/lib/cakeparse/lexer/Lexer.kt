@@ -26,10 +26,10 @@ open class Lexer(tokens: Set<ITokenType>) {
 
             return object : Iterator<Token> {
 
-                val scanner = Scanner(input).useDelimiter("")
-                var currentPosition = 0
-                var currentRow = 1
-                var currentCol = 1
+                private val scanner = Scanner(input).useDelimiter("")
+                private var currentPos = 0
+                private var currentRow = 1
+                private var currentCol = 1
 
                 override fun hasNext() = scanner.hasNext()
 
@@ -42,9 +42,9 @@ open class Lexer(tokens: Set<ITokenType>) {
                         }
                         val match = scanner.match().group()
 
-                        val result = Token(type, match, currentPosition, currentRow, currentCol)
+                        val result = Token(type, match, currentPos, currentRow, currentCol)
 
-                        currentPosition += match.length
+                        currentPos += match.length
 
                         currentRow += match.count { it == '\n' }
 
@@ -55,7 +55,7 @@ open class Lexer(tokens: Set<ITokenType>) {
 
                         return result
                     }
-                    throw LexerException(currentPosition, currentRow, currentCol, scanner.next(".")[0])
+                    throw LexerException(currentPos, currentRow, currentCol, scanner.next(".")[0])
                 }
             }
         }

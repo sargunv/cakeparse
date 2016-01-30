@@ -9,6 +9,9 @@ import me.sargunvohra.lib.cakeparse.example.CalculatorExample
 import me.sargunvohra.lib.cakeparse.exception.LexerException
 import me.sargunvohra.lib.cakeparse.lexer.Lexer
 import me.sargunvohra.lib.cakeparse.lexer.Token
+import java.io.ByteArrayInputStream
+import java.io.InputStream
+import java.nio.charset.StandardCharsets
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
@@ -23,9 +26,15 @@ class LexingStepDef() {
         lexer = CalculatorExample.allTokens.lexer()
     }
 
-    @When("^it lexes the input ([^\"]*)$")
+    @When("^it lexes the input (.*)$")
     fun itLexesInput(input: String) {
         result = lexer.lex(input)
+    }
+
+    @When("^it lexes the InputStream (.*)$")
+    fun itLexesStream(input: String) {
+        val stream: InputStream = ByteArrayInputStream(input.toByteArray(StandardCharsets.UTF_8));
+        result = lexer.lex(stream)
     }
 
     @When("^it lexes empty input$")
