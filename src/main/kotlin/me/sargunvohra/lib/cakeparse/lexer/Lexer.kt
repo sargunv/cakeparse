@@ -28,7 +28,8 @@ open class Lexer(tokens: Set<ITokenType>) {
 
                 val scanner = Scanner(input).useDelimiter("")
                 var currentPosition = 0
-                var currentLine = 1
+                var currentRow = 1
+                var currentCol = 1
 
                 override fun hasNext() = scanner.hasNext()
 
@@ -41,11 +42,16 @@ open class Lexer(tokens: Set<ITokenType>) {
                         }
                         val match = scanner.match().group()
 
-                        val result = Token(type, match, currentPosition, currentLine)
+                        val result = Token(type, match, currentPosition, currentRow, currentCol)
 
                         currentPosition += match.length
-                        if (match.contains('\n'))
-                            currentLine++
+
+                        currentRow += match.count { it == '\n' }
+
+                        currentCol += match.length
+                        val lastIndex = match.lastIndexOf('\n')
+                        if (lastIndex >= 0)
+                            currentCol = match.length - lastIndex
 
                         return result
                     }

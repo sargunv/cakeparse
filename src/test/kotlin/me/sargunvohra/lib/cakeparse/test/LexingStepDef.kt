@@ -63,8 +63,10 @@ class LexingStepDef() {
         }
     }
 
-    @Then("^the line numbers are (.*)$")
-    fun lineNumbersAre(list: List<Int>) {
-        assertEquals(list, result.map { it.line }.toList())
+    @Then("^the token rows and columns are$")
+    fun rowsAre(table: DataTable) {
+        val expected = table.gherkinRows.map { it.cells[0].toInt() to it.cells[1].toInt() }
+        val actual = result.map { it.row to it.col }.toList()
+        assertEquals(expected, actual)
     }
 }
