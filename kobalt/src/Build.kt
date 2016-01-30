@@ -1,6 +1,8 @@
 import com.beust.kobalt.*
 import com.beust.kobalt.plugin.packaging.assemble
 import com.beust.kobalt.plugin.kotlin.*
+import com.beust.kobalt.plugin.publish.bintray
+import com.beust.kobalt.plugin.publish.github
 
 val repos = repos()
 
@@ -12,7 +14,7 @@ val p = kotlinProject {
     name = "CakeParse"
     group = "me.sargunvohra.lib"
     artifactId = name
-    version = "0.1.0-SNAPSHOT"
+    version = "1.0.0"
 
     sourceDirectories {
         path("src/main/kotlin")
@@ -39,6 +41,16 @@ val p = kotlinProject {
     assemble {
         jar {
         }
+        mavenJars {
+        }
+    }
+
+    bintray {
+        publish = true
+//        sign = true
+    }
+
+    github {
     }
 
     test {
