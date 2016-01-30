@@ -6,7 +6,7 @@ CakeParse is a simple parser combinator library for [Kotlin](https://kotlinlang.
 
 ## Documentation
 
-Documentation is available at the project's [GitHub Page](https://sargunvohra.me/CakeParse).
+Documentation is available at the project's [GitHub Page](http://sargunvohra.me/CakeParse).
 
 ## Build
 
