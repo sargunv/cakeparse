@@ -1,23 +1,140 @@
----
-layout: default
----
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CakeParse by sargunster</title>
 
-<div class="home">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>CakeParse</h1>
+        <p>Simple parser combinator library for Kotlin</p>
 
-  <h1 class="page-heading">Posts</h1>
+        <p class="view"><a href="https://github.com/sargunster/CakeParse">View the Project on GitHub <small>sargunster/CakeParse</small></a></p>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+        <ul>
+          <li><a href="https://github.com/sargunster/CakeParse/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/sargunster/CakeParse/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/sargunster/CakeParse">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="cakeparse" class="anchor" href="#cakeparse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CakeParse</h1>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+<p>CakeParse is a lexer and recursive descent parser combinator library for <a href="https://kotlinlang.org/">Kotlin</a>. It can parse any LL(*) grammer, and contains line/column number error reporting. A <a href="./src/test/kotlin/me/sargunvohra/lib/cakeparse/example/Calculator.kt">calculator expression parser</a> example is included.</p>
 
-</div>
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="step-0-setup" class="anchor" href="#step-0-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 0: Setup</h3>
+
+<p>Check the <a href="https://github.com/sargunster/CakeParse/releases">releases tab</a> for the latest version number.</p>
+
+<h4>
+<a id="gradle" class="anchor" href="#gradle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Gradle</h4>
+
+<div class="highlight highlight-source-groovy"><pre>repositories {
+  jcenter()
+}
+
+dependencies {
+  compile <span class="pl-s"><span class="pl-pds">"</span>me.sargunvohra.lib:CakeParse:&lt;version&gt;<span class="pl-pds">"</span></span>
+}</pre></div>
+
+<h4>
+<a id="kobalt" class="anchor" href="#kobalt" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Kobalt</h4>
+
+<div class="highlight highlight-source-Kotlin"><pre>dependencies {
+  compile(<span class="pl-s"><span class="pl-pds">"</span>me.sargunvohra.lib.CakeParse:&lt;version&gt;<span class="pl-pds">"</span></span>)
+}</pre></div>
+
+<h4>
+<a id="manual" class="anchor" href="#manual" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Manual</h4>
+
+<p>Download the latest version from the <a href="https://github.com/sargunster/CakeParse/releases">releases tab</a> and add the jar to your classpath. This method is not reccomended.</p>
+
+<h3>
+<a id="step-1-tokens" class="anchor" href="#step-1-tokens" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 1: Tokens</h3>
+
+<p>Define your tokens by name and regex. These make up the building blocks of your parser rules.</p>
+
+<div class="highlight highlight-source-Kotlin"><pre><span class="pl-k">import</span> me.sargunvohra.lib.cakeparse.api.*
+
+<span class="pl-k">val</span> <span class="pl-en">number</span> <span class="pl-k">=</span> token(<span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>[0-9]+<span class="pl-pds">"</span></span>)
+<span class="pl-k">val</span> <span class="pl-en">plus</span> <span class="pl-k">=</span> token(<span class="pl-s"><span class="pl-pds">"</span>plus<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\\</span>+<span class="pl-pds">"</span></span>)
+<span class="pl-k">val</span> <span class="pl-en">space</span> <span class="pl-k">=</span> token(<span class="pl-s"><span class="pl-pds">"</span>space<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>[ <span class="pl-cce">\\</span>t<span class="pl-cce">\\</span>r]+<span class="pl-pds">"</span></span>, ignore <span class="pl-k">=</span> <span class="pl-c1">true</span>)
+<span class="pl-c">// ...</span></pre></div>
+
+<h3>
+<a id="step-2-productions" class="anchor" href="#step-2-productions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 2: Productions</h3>
+
+<p>Define your productions using the rules in <a href="./src/main/kotlin/me/sargunvohra/lib/cakeparse/api/Combinators.kt">Combinators.kt</a> and <a href="src/main/kotlin/me/sargunvohra/lib/cakeparse/api/Convenience.kt">Convenience.kt</a>.</p>
+
+<div class="highlight highlight-source-Kotlin"><pre><span class="pl-k">val</span> <span class="pl-en">parenExpr</span> <span class="pl-k">=</span> lPar <span class="pl-k">then</span> expr before rPar
+<span class="pl-k">val</span> <span class="pl-en">primExpr</span> <span class="pl-k">=</span> number map { it<span class="pl-k">.</span>raw<span class="pl-k">.</span>toInt() } or parenExpr
+<span class="pl-k">val</span> <span class="pl-en">goal</span> <span class="pl-k">=</span> oneOrMore(number)
+<span class="pl-c">// ...</span></pre></div>
+
+<h3>
+<a id="step-3-parse" class="anchor" href="#step-3-parse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 3: Parse</h3>
+
+<p>Pass your input through a lexer, and then a parser.</p>
+
+<div class="highlight highlight-source-Kotlin"><pre><span class="pl-k">val</span> <span class="pl-en">tokens</span> <span class="pl-k">=</span> setOf(token1, token2, token3)
+<span class="pl-k">try</span> {
+  <span class="pl-k">val</span> <span class="pl-en">input</span> <span class="pl-k">=</span> System<span class="pl-k">.</span><span class="pl-k">in</span>
+  <span class="pl-k">val</span> <span class="pl-en">result</span> <span class="pl-k">=</span> tokens<span class="pl-k">.</span>lexer()<span class="pl-k">.</span>lex(input)<span class="pl-k">.</span>parseToEnd(goal)<span class="pl-k">.</span>value
+  println(<span class="pl-s"><span class="pl-pds">"</span>Result: <span class="pl-v">$result</span><span class="pl-pds">"</span></span>)
+} <span class="pl-k">catch</span> (e<span class="pl-k">:</span> LexerException) {
+  System<span class="pl-k">.</span>err<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span>Lexing error: <span class="pl-v">${e.message}</span><span class="pl-pds">"</span></span>)
+} <span class="pl-k">catch</span> (e<span class="pl-k">:</span> ParserException) {
+  System<span class="pl-k">.</span>err<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span>Parsing error: <span class="pl-v">${e.message}</span><span class="pl-pds">"</span></span>)
+}</pre></div>
+
+<h3>
+<a id="note-recursion" class="anchor" href="#note-recursion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Note: Recursion</h3>
+
+<p>If you have a rule or system of rules that involves recursion, then you'll have to use the <code>ref</code> function to make sure it works. Make sure to explicitly specify the type of a ref. This is needed because the compiler can't infer the type of a recursive reference.</p>
+
+<div class="highlight highlight-source-Kotlin"><pre><span class="pl-c">// put all tokens first</span>
+<span class="pl-k">val</span> <span class="pl-en">lParen</span> <span class="pl-k">=</span> token(<span class="pl-s"><span class="pl-pds">"</span>lParen<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\\</span>(<span class="pl-pds">"</span></span>)
+<span class="pl-k">val</span> <span class="pl-en">rParen</span> <span class="pl-k">=</span> token(<span class="pl-s"><span class="pl-pds">"</span>rParen<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\\</span>)<span class="pl-pds">"</span></span>)
+
+<span class="pl-c">// then put all refs</span>
+<span class="pl-k">val</span> <span class="pl-en">parenRef</span><span class="pl-k">:</span> Parser&lt;Token&gt; <span class="pl-k">=</span> <span class="pl-k">ref</span>({ paren })
+
+<span class="pl-c">// then put all rules</span>
+<span class="pl-k">val</span> <span class="pl-en">paren</span> <span class="pl-k">=</span> (lParen <span class="pl-k">then</span> parenRef before rParen) or empty()</pre></div>
+
+<p>The best way to do this is to put your goal rule at the bottom, all rules that depend on it above, all rules that depend on those above those, etc. Anywhere a rule refers to itself or the rule below, use a <code>ref</code>.</p>
+
+<h2>
+<a id="build" class="anchor" href="#build" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Build</h2>
+
+<p>This project uses <a href="http://beust.com/kobalt/home/index.html">Kobalt</a> for its build system. Simply clone the repository and run <code>./kobaltw assemble</code>. If that doesn't work, try <code>./kobaltw clean test assemble</code></p>
+
+<h2>
+<a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contribute</h2>
+
+<p>Pull requests are welcome. Check the issue tracker to find things to work on.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/sargunster">sargunster</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
