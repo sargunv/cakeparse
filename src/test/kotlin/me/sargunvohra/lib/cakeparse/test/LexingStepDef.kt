@@ -23,9 +23,19 @@ class LexingStepDef() {
         lexer = CalculatorExample.allTokens.lexer()
     }
 
-    @When("^it lexes the input \"([^\"]*)\"$")
+    @When("^it lexes the input ([^\"]*)$")
     fun itLexesInput(input: String) {
         result = lexer.lex(input)
+    }
+
+    @When("^it lexes empty input$")
+    fun itLexesEmptyInput() {
+        itLexesInput("")
+    }
+
+    @When("^it lexes the input$")
+    fun itLexesMultilineInput(input: String) {
+        itLexesInput(input)
     }
 
     @Then("^the lexing result is an empty list$")
@@ -51,5 +61,10 @@ class LexingStepDef() {
             assertEquals(tok.raw, row.cells[1], "token raw value")
             assertEquals(tok.position, row.cells[2].toInt(), "token position")
         }
+    }
+
+    @Then("^the line numbers are (.*)$")
+    fun lineNumbersAre(list: List<Int>) {
+        assertEquals(list, result.map { it.line }.toList())
     }
 }

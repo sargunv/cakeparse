@@ -1,50 +1,57 @@
 package me.sargunvohra.lib.cakeparse.lexer
 
 import me.sargunvohra.lib.cakeparse.exception.LexerException
-import java.util.regex.Pattern
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.io.StringReader
+import java.util.*
 
-open class Lexer(val tokens: Set<ITokenType>) {
+open class Lexer(tokens: Set<ITokenType>) {
 
-    private val pattern: Pattern
-
-    init {
-        if (tokens.isEmpty())
-            throw IllegalArgumentException("Must provide at least one token")
-
-        pattern = Pattern.compile(
-                tokens.joinToString(separator = "|") {
-                    val name = it.name
-                    val pattern = it.pattern
-                    "(?<$name>$pattern)"
-                }
-        );
+    private val patterns = tokens.toMap {
+        it to it.pattern.toRegex().toPattern()
     }
 
-    fun lex(input: CharSequence) = object : Sequence<Token> {
+    init {
+        require(tokens.isNotEmpty()) { "Must provide at least one token" }
+    }
+
+    fun lex(input: String) = lex(StringReader(input))
+
+    fun lex(input: InputStream) = lex(InputStreamReader(input))
+
+    fun lex(input: Readable) = object : Sequence<Token> {
 
         override fun iterator(): Iterator<Token> {
-            val matcher = pattern.matcher(input)
 
             return object : Iterator<Token> {
 
-                override fun hasNext(): Boolean {
-                    return matcher.lookingAt() || !matcher.hitEnd()
-                }
+                val scanner = Scanner(input).useDelimiter("")
+                var currentPosition = 0
+                var currentLine = 1
+
+                override fun hasNext() = scanner.hasNext()
 
                 override fun next(): Token {
-                    val pos = matcher.regionStart()
-                    if (matcher.lookingAt()) {
-                        tokens.forEach { type ->
-                            matcher.group(type.name)?.let { str ->
-                                matcher.region(pos + str.length, matcher.regionEnd())
-                                return Token(type, str, pos)
-                            }
+                    for ((type, pattern) in patterns) {
+                        try {
+                            scanner.skip(pattern)
+                        } catch (e: NoSuchElementException) {
+                            continue
                         }
-                        throw IllegalStateException()
+                        val match = scanner.match().group()
+
+                        val result = Token(type, match, currentPosition, currentLine)
+
+                        currentPosition += match.length
+                        if (match.contains('\n'))
+                            currentLine++
+
+                        return result
                     }
-                    throw LexerException(pos, input[pos])
+                    throw LexerException(currentPosition, scanner.next(".")[0])
                 }
             }
         }
-    }
+    }.constrainOnce()
 }
