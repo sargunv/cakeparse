@@ -1,37 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>CakeParse by sargunster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <title>CakeParse by sargunster</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
+    <header>
+      <div class="inner">
         <h1>CakeParse</h1>
-        <p>Simple parser combinator library for Kotlin</p>
+        <h2>Simple parser combinator library for Kotlin</h2>
+        <a href="https://github.com/sargunster/CakeParse" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-        <p class="view"><a href="https://github.com/sargunster/CakeParse">View the Project on GitHub <small>sargunster/CakeParse</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/sargunster/CakeParse/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/sargunster/CakeParse/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/sargunster/CakeParse">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
 <a id="cakeparse" class="anchor" href="#cakeparse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CakeParse</h1>
 
-<p>CakeParse is a lexer and recursive descent parser combinator library for <a href="https://kotlinlang.org/">Kotlin</a>. It can parse any LL(*) grammer, and contains line/column number error reporting. A <a href="./src/test/kotlin/me/sargunvohra/lib/cakeparse/example/Calculator.kt">calculator expression parser</a> example is included.</p>
+<p>CakeParse is a lexer and recursive descent parser combinator library for <a href="https://kotlinlang.org/">Kotlin</a>. It can parse any LL(*) grammer, and contains line/column number error reporting. A <a href="https://github.com/sargunster/CakeParse/blob/master/src/test/kotlin/me/sargunvohra/lib/cakeparse/example/Calculator.kt">calculator expression parser</a> example is included.</p>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
@@ -67,7 +67,7 @@ dependencies {
 <h3>
 <a id="step-1-tokens" class="anchor" href="#step-1-tokens" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 1: Tokens</h3>
 
-<p>Define your tokens by name and regex. These make up the building blocks of your parser rules.</p>
+<p>Define your tokens by name and regex. These make up the building blocks of your parser rules. Whitespace can be ignored by defining a token with <code>ignore = true</code>.</p>
 
 <div class="highlight highlight-source-Kotlin"><pre><span class="pl-k">import</span> me.sargunvohra.lib.cakeparse.api.*
 
@@ -79,12 +79,44 @@ dependencies {
 <h3>
 <a id="step-2-productions" class="anchor" href="#step-2-productions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 2: Productions</h3>
 
-<p>Define your productions using the rules in <a href="./src/main/kotlin/me/sargunvohra/lib/cakeparse/api/Combinators.kt">Combinators.kt</a> and <a href="src/main/kotlin/me/sargunvohra/lib/cakeparse/api/Convenience.kt">Convenience.kt</a>.</p>
+<p>Define your productions using the the combinators and other methods.</p>
 
 <div class="highlight highlight-source-Kotlin"><pre><span class="pl-k">val</span> <span class="pl-en">parenExpr</span> <span class="pl-k">=</span> lPar <span class="pl-k">then</span> expr before rPar
 <span class="pl-k">val</span> <span class="pl-en">primExpr</span> <span class="pl-k">=</span> number map { it<span class="pl-k">.</span>raw<span class="pl-k">.</span>toInt() } or parenExpr
 <span class="pl-k">val</span> <span class="pl-en">goal</span> <span class="pl-k">=</span> oneOrMore(number)
 <span class="pl-c">// ...</span></pre></div>
+
+<p>The available combinators are:</p>
+
+<ul>
+<li>
+<code>a or b</code>: Parse <code>a</code> if possible, otherwise parse <code>b</code>. Return the result of the successful parse.</li>
+<li>
+<code>a and b</code>: Parse <code>a</code> and then <code>b</code>. Return a <code>Pair&lt;K,V&gt;</code> of both results.</li>
+<li>
+<code>a then b</code>: Just like <code>and</code>, but return the result of <code>b</code>.</li>
+<li>
+<code>a before b</code>: Just like <code>and</code>, but return the result of <code>a</code>.</li>
+<li>
+<code>a map { /* transformer */ }</code>: Just like <code>a</code>, but map the result to a new result using the transformer.</li>
+</ul>
+
+<p>There are also a number of convenience parsers:</p>
+
+<ul>
+<li>
+<code>empty&lt;T&gt;()</code>: Match an empty input and return a <code>null</code> result of type <code>T</code>. </li>
+<li>
+<code>optional(a)</code>: Match <code>a</code> if possible, otherwise return <code>null</code>.</li>
+<li>
+<code>atLeast(n, a)</code>: Match <code>a</code> in a sequence at least <code>n</code> times, and return a result containing a list of all the matches.</li>
+<li>
+<code>zeroOrMore(a)</code>: Just like <code>atLeast(0, a)</code>
+</li>
+<li>
+<code>oneOrMore(a)</code>: Just like <code>atLeast(1, a)</code>
+</li>
+</ul>
 
 <h3>
 <a id="step-3-parse" class="anchor" href="#step-3-parse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 3: Parse</h3>
@@ -105,7 +137,7 @@ dependencies {
 <h3>
 <a id="note-recursion" class="anchor" href="#note-recursion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Note: Recursion</h3>
 
-<p>If you have a rule or system of rules that involves recursion, then you'll have to use the <code>ref</code> function to make sure it works. Make sure to explicitly specify the type of a ref. This is needed because the compiler can't infer the type of a recursive reference.</p>
+<p>If you have a rule or system of rules that involves recursion, then you'll have to use the <code>ref</code> function to make it work. Be sure to explicitly specify the type of a ref. This is needed because the compiler can't infer the type of a recursive reference.</p>
 
 <div class="highlight highlight-source-Kotlin"><pre><span class="pl-c">// put all tokens first</span>
 <span class="pl-k">val</span> <span class="pl-en">lParen</span> <span class="pl-k">=</span> token(<span class="pl-s"><span class="pl-pds">"</span>lParen<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\\</span>(<span class="pl-pds">"</span></span>)
@@ -118,13 +150,25 @@ dependencies {
 <span class="pl-k">val</span> <span class="pl-en">paren</span> <span class="pl-k">=</span> (lParen <span class="pl-k">then</span> parenRef before rParen) or empty()</pre></div>
 
 <p>The best way to do this is to put your goal rule at the bottom, all rules that depend on it above, all rules that depend on those above those, etc. Anywhere a rule refers to itself or the rule below, use a <code>ref</code>.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/sargunster">sargunster</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/sargunster/CakeParse/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/sargunster/CakeParse/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/sargunster/CakeParse"></a> is maintained by <a href="https://github.com/sargunster">sargunster</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+  
   </body>
 </html>
