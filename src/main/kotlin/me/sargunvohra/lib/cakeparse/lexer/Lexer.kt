@@ -55,7 +55,7 @@ open class Lexer(tokens: Set<ITokenType>) {
 
                         return result
                     }
-                    throw LexerException(currentPosition, scanner.next(".")[0])
+                    throw LexerException(currentPosition, currentRow, currentCol, scanner.next(".")[0])
                 }
             }
         }

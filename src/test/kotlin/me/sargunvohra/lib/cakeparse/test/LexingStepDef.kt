@@ -43,13 +43,15 @@ class LexingStepDef() {
         assertNull(result.firstOrNull())
     }
 
-    @Then("^lexing fails with character '(.)' at position (\\d)$")
-    fun lexingFailed(char: Char, pos: Int) {
+    @Then("^lexing fails with character '(.)' at position (\\d+), row (\\d+), col (\\d+)$")
+    fun lexingFailed(char: Char, pos: Int, row: Int, col: Int) {
         val e: LexerException = assertFailsWith(LexerException::class) {
             result.forEach { }
         }
-        assertEquals(char, e.char)
-        assertEquals(pos, e.position)
+        assertEquals(char, e.char, "character")
+        assertEquals(pos, e.pos, "pos")
+        assertEquals(row, e.row, "row")
+        assertEquals(col, e.col, "col")
     }
 
     @Then("^the token types, raw values, and positions are:$")

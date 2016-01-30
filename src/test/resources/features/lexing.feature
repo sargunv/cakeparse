@@ -11,15 +11,15 @@ Feature: Lexing
 
   Scenario: Lexing an input with an invalid token in the middle
     When it lexes the input 1+2+a+4+5
-    Then lexing fails with character 'a' at position 4
+    Then lexing fails with character 'a' at position 4, row 1, col 5
 
   Scenario: Lexing an input with an invalid token at the start
     When it lexes the input b+2+3+4+5
-    Then lexing fails with character 'b' at position 0
+    Then lexing fails with character 'b' at position 0, row 1, col 1
 
   Scenario: Lexing an input with an invalid token at the end
     When it lexes the input 1+2+3+4+c
-    Then lexing fails with character 'c' at position 8
+    Then lexing fails with character 'c' at position 8, row 1, col 9
 
   Scenario: Lexing a complex valid input
     When it lexes the input 1+3*(400/(5-3))

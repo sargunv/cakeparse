@@ -8,5 +8,5 @@ class UnexpectedTokenException(
         val got: Token
 ) : ParseException(
         "Expected ${expected?.let { "'${expected.name}' token" } ?: "end of file"},"
-                + " but got '${got.type.name}' at position ${got.position}"
+                + " but got '${got.type.name}' at row ${got.row}, column ${got.col}"
 )
