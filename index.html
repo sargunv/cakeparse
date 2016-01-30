@@ -118,16 +118,6 @@ dependencies {
 <span class="pl-k">val</span> <span class="pl-en">paren</span> <span class="pl-k">=</span> (lParen <span class="pl-k">then</span> parenRef before rParen) or empty()</pre></div>
 
 <p>The best way to do this is to put your goal rule at the bottom, all rules that depend on it above, all rules that depend on those above those, etc. Anywhere a rule refers to itself or the rule below, use a <code>ref</code>.</p>
-
-<h2>
-<a id="build" class="anchor" href="#build" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Build</h2>
-
-<p>This project uses <a href="http://beust.com/kobalt/home/index.html">Kobalt</a> for its build system. Simply clone the repository and run <code>./kobaltw assemble</code>. If that doesn't work, try <code>./kobaltw clean test assemble</code></p>
-
-<h2>
-<a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contribute</h2>
-
-<p>Pull requests are welcome. Check the issue tracker to find things to work on.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/sargunster">sargunster</a></p>
