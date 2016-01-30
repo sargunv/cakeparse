@@ -14,7 +14,7 @@ val p = kotlinProject {
     name = "CakeParse"
     group = "me.sargunvohra.lib"
     artifactId = name
-    version = "1.0.0"
+    version = "1.0.1"
 
     sourceDirectories {
         path("src/main/kotlin")
@@ -47,12 +47,11 @@ val p = kotlinProject {
 
     bintray {
         publish = true
-//        sign = true
+        sign = true
     }
 
     github {
         file("$buildDirectory/libs/$name-$version.jar", "$name/$version/$name-$version.jar")
-        description = "$name release $version"
     }
 
     test {
