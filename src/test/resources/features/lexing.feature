@@ -7,7 +7,7 @@ Feature: Lexing
 
   Scenario: Lexing an empty input
     When it lexes the input ""
-    Then the result is an empty list
+    Then the lexing result is an empty list
 
   Scenario: Lexing an input with an invalid token in the middle
     When it lexes the input "1+2+a+4+5"

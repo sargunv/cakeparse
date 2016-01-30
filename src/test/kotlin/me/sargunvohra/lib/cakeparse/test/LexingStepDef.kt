@@ -28,7 +28,7 @@ class LexingStepDef() {
         result = lexer.lex(input)
     }
 
-    @Then("^the result is an empty list$")
+    @Then("^the lexing result is an empty list$")
     fun resultIsEmpty() {
         assertNull(result.firstOrNull())
     }
