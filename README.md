@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sargunster/CakeParse.svg?branch=master)](https://travis-ci.org/sargunster/CakeParse)
+[![Build Status](https://travis-ci.org/sargunster/CakeParse.svg?branch=master)](https://travis-ci.org/sargunster/CakeParse)[ ![Download](https://api.bintray.com/packages/sargunster/maven/CakeParse/images/download.svg) ](https://bintray.com/sargunster/maven/CakeParse/_latestVersion)
 
 # CakeParse
 
@@ -8,7 +8,31 @@ CakeParse is a lexer and recursive descent parser combinator library for [Kotlin
 
 ### Step 0: Setup
 
-This library is not yet available on a repository. It will be coming soon! Meanwhile you have to clone and build it yourself, and then link the jar as a dependency.
+Check the [releases tab](https://github.com/sargunster/CakeParse/releases) for the latest version number.
+
+#### Gradle
+
+``` groovy
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile "me.sargunvohra.lib:CakeParse:<version>"
+}
+```
+
+#### Kobalt
+
+``` kotlin
+dependencies {
+  compile("me.sargunvohra.lib.CakeParse:<version>")
+}
+```
+
+#### Manual
+
+Download the latest version from the [releases tab](https://github.com/sargunster/CakeParse/releases) and add the jar to your classpath. This method is not reccomended.
 
 ### Step 1: Tokens
 
