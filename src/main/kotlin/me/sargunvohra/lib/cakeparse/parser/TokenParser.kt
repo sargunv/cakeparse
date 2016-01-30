@@ -17,8 +17,8 @@ import me.sargunvohra.lib.common.CachedSequence
 class TokenParser(val targetType: Token) : Parser<TokenInstance> {
 
     /**
-     * Check the first non-ignorable token in the input. If it is of type [targetType], then return a result containing the token.
-     * Otherwise, throw an exception.
+     * Check the first non-ignorable token in the input. If it is of type [targetType], then return a result containing
+     * the token. Otherwise, throw an exception.
      *
      * @param input the input to parse.
      *

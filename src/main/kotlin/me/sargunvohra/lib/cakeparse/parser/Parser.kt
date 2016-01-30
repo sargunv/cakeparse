@@ -11,8 +11,8 @@ import me.sargunvohra.lib.common.CachedSequence
 interface Parser<out A> {
 
     /**
-     * Parse the input and return a result with the parsed value and the remaining input. If the input can
-     * not be parsed, then throw a ParseException.
+     * Parse the input and return a result with the parsed value and the remaining input. If the input can not be
+     * parsed, then throw a ParseException.
      *
      * @param input the input to parse, obtained from a lexer or from another parser.
      */
