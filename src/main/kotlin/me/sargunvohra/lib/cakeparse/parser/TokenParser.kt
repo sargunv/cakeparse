@@ -12,7 +12,7 @@ import me.sargunvohra.lib.common.CachedSequence
  * This parser is the most basic parser. It simply looks for one specific type of token. Other parsers combine instances
  * of this parser to generate complex parsing rules.
  *
- * @property targetType the type of token to target
+ * @property targetType the type of token to target.
  */
 class TokenParser(val targetType: Token) : Parser<TokenInstance> {
 
@@ -20,10 +20,10 @@ class TokenParser(val targetType: Token) : Parser<TokenInstance> {
      * Check the first non-ignorable token in the input. If it is of type [targetType], then return a result containing the token.
      * Otherwise, throw an exception.
      *
-     * @param input the input to parse
+     * @param input the input to parse.
      *
-     * @throws UnexpectedTokenException when the type of the first token in the [input] is not equal to [targetType]
-     * @throws UnexpectedEofException when the [input] is empty or contains only ignorable tokens
+     * @throws UnexpectedTokenException when the type of the first token in the [input] is not equal to [targetType].
+     * @throws UnexpectedEofException when the [input] is empty or contains only ignorable tokens.
      */
     override fun eat(input: CachedSequence<TokenInstance>): Result<TokenInstance> = input.firstOrNull()?.let { token ->
         when {

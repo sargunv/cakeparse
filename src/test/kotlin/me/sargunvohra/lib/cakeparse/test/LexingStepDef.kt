@@ -70,7 +70,7 @@ class LexingStepDef() {
             val (tok, row) = it
             assertEquals(tok.type.name, row.cells[0], "token type")
             assertEquals(tok.raw, row.cells[1], "token raw value")
-            assertEquals(tok.position, row.cells[2].toInt(), "token position")
+            assertEquals(tok.pos, row.cells[2].toInt(), "token position")
         }
     }
 

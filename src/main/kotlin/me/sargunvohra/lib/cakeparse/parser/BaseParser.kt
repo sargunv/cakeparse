@@ -8,7 +8,7 @@ import me.sargunvohra.lib.common.CachedSequence
  *
  * @param A the type of value returned as the result of a successful parse.
  *
- * @property block a function containing the rules defining how to parse this parser's target
+ * @property block a function containing the rules defining how to parse this parser's target.
  */
 class BaseParser<out A>(val block: (CachedSequence<TokenInstance>) -> Result<A>) : Parser<A> {
 

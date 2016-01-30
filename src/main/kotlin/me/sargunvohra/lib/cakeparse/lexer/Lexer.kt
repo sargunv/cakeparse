@@ -6,6 +6,11 @@ import java.io.InputStreamReader
 import java.io.StringReader
 import java.util.*
 
+/**
+ * Defines a lexer over a set of token definitions. A single lexer can be used to lex multiple inputs.
+ *
+ * @param tokens the set of tokens that this lexer looks for in the input. The set must not be empty.
+ */
 class Lexer(tokens: Set<Token>) {
 
     private val patterns = tokens.toMap {
@@ -16,10 +21,31 @@ class Lexer(tokens: Set<Token>) {
         require(tokens.isNotEmpty()) { "Must provide at least one token" }
     }
 
+    /**
+     * Read a string and produce a stream of tokens.
+     *
+     * @param input the string to read from.
+     *
+     * @return a sequence of tokens. This sequence can only be iterated once.
+     */
     fun lex(input: String) = lex(StringReader(input))
 
+    /**
+     * Read an input stream and produce a stream of tokens.
+     *
+     * @param input the input stream to read from.
+     *
+     * @return a sequence of tokens. This sequence can only be iterated once.
+     */
     fun lex(input: InputStream) = lex(InputStreamReader(input))
 
+    /**
+     * Read any reader and produce a stream of tokens.
+     *
+     * @param input the readable object to read from.
+     *
+     * @return a sequence of tokens. This sequence can only be iterated once.
+     */
     fun lex(input: Readable) = object : Sequence<TokenInstance> {
 
         override fun iterator(): Iterator<TokenInstance> {

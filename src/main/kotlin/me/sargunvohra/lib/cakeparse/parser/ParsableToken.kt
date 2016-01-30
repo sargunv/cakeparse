@@ -5,11 +5,11 @@ import me.sargunvohra.lib.cakeparse.lexer.TokenInstance
 import me.sargunvohra.lib.common.CachedSequence
 
 /**
- * A token that can be parsed.
+ * A definition of a type of token that can be parsed.
  *
- * @property name the alphanumeric name of this token
- * @property pattern the regular expression defining the format of this token
- * @property ignore whether this token can be ignored while parsing, for example: whitespace
+ * @property name the alphanumeric name of this token.
+ * @property pattern the regular expression defining the format of this token.
+ * @property ignore whether this token can be ignored while parsing, for example: whitespace.
  */
 class ParsableToken(
         override val name: String,

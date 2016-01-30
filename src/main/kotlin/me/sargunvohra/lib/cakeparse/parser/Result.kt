@@ -4,12 +4,12 @@ import me.sargunvohra.lib.cakeparse.lexer.TokenInstance
 import me.sargunvohra.lib.common.CachedSequence
 
 /**
- * A result of a successful parse
+ * A result of a successful parse.
  *
- * @param A The type of the result value
+ * @param A The type of the result value.
  *
- * @property value the object produced by the parse
- * @property remainder the remaining input after the parse
+ * @property value the object produced by the parse.
+ * @property remainder the remaining input after the parse.
  */
 data class Result<out A>(
         val value: A,
