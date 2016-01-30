@@ -1,7 +1,7 @@
 package me.sargunvohra.lib.cakeparse.example
 
 import me.sargunvohra.lib.cakeparse.api.*
-import me.sargunvohra.lib.cakeparse.parser.IParser
+import me.sargunvohra.lib.cakeparse.parser.Parser
 
 object CalculatorExample {
     object Tokens {
@@ -18,9 +18,9 @@ object CalculatorExample {
 
     object Rules {
         // convenience references for recursive rules
-        val exprRef: IParser<Int> = ref { expr }
-        val multExprRef: IParser<Int> = ref { multExpr }
-        val addExprRef: IParser<Int> = ref { addExpr }
+        val exprRef: Parser<Int> = ref { expr }
+        val multExprRef: Parser<Int> = ref { multExpr }
+        val addExprRef: Parser<Int> = ref { addExpr }
 
         // actual rules
         val parenExpr = Tokens.lPar then exprRef before Tokens.rPar
@@ -51,7 +51,7 @@ object CalculatorExample {
             } ?: left
         }
 
-        val expr: IParser<Int> = addExpr
+        val expr: Parser<Int> = addExpr
     }
 
     val allTokens = setOf(

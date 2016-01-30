@@ -8,7 +8,7 @@ import me.sargunvohra.lib.cakeparse.api.lexer
 import me.sargunvohra.lib.cakeparse.example.CalculatorExample
 import me.sargunvohra.lib.cakeparse.exception.LexerException
 import me.sargunvohra.lib.cakeparse.lexer.Lexer
-import me.sargunvohra.lib.cakeparse.lexer.Token
+import me.sargunvohra.lib.cakeparse.lexer.TokenInstance
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
@@ -19,7 +19,7 @@ import kotlin.test.assertNull
 class LexingStepDef() {
 
     lateinit var lexer: Lexer
-    lateinit var result: Sequence<Token>
+    lateinit var result: Sequence<TokenInstance>
 
     @Given("^a lexer for calculator tokens$")
     fun givenCalculatorTokenLexer() {

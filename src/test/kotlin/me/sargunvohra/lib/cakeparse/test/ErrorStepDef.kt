@@ -3,14 +3,14 @@ package me.sargunvohra.lib.cakeparse.test
 import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
-import me.sargunvohra.lib.cakeparse.lexer.ITokenType
+import me.sargunvohra.lib.cakeparse.lexer.Token
 import me.sargunvohra.lib.cakeparse.lexer.Lexer
 import kotlin.test.assertFailsWith
 import kotlin.test.fail
 
 class ErrorStepDef {
 
-    lateinit var tokens: Set<ITokenType>
+    lateinit var tokens: Set<Token>
     var throwable: Throwable? = null
 
     @Given("^a set of no token types$")

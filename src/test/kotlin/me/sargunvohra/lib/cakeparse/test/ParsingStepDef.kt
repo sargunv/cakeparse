@@ -5,10 +5,10 @@ import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
 import me.sargunvohra.lib.cakeparse.api.*
 import me.sargunvohra.lib.cakeparse.example.CalculatorExample
-import me.sargunvohra.lib.cakeparse.exception.EndOfFileException
+import me.sargunvohra.lib.cakeparse.exception.UnexpectedEofException
 import me.sargunvohra.lib.cakeparse.exception.UnexpectedTokenException
 import me.sargunvohra.lib.cakeparse.lexer.Lexer
-import me.sargunvohra.lib.cakeparse.parser.IParser
+import me.sargunvohra.lib.cakeparse.parser.Parser
 import me.sargunvohra.lib.cakeparse.parser.Result
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -16,7 +16,7 @@ import kotlin.test.assertFailsWith
 class ParsingStepDef() {
 
     lateinit var lexer: Lexer
-    lateinit var parser: IParser<Any>
+    lateinit var parser: Parser<Any>
     var result: Result<Any>? = null
     var error: Throwable? = null
 
@@ -79,7 +79,7 @@ class ParsingStepDef() {
 
     @Then("^the parsing fails with unexpected end of file, expected \"([^\"]*)\"$")
     fun unexpectedEof(expected: String) {
-        val e = assertFailsWith(EndOfFileException::class) { error?.let { throw it } }
+        val e = assertFailsWith(UnexpectedEofException::class) { error?.let { throw it } }
         assertEquals(expected, e.expected.name)
     }
 }

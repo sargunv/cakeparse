@@ -6,7 +6,7 @@ import java.io.InputStreamReader
 import java.io.StringReader
 import java.util.*
 
-open class Lexer(tokens: Set<ITokenType>) {
+class Lexer(tokens: Set<Token>) {
 
     private val patterns = tokens.toMap {
         it to it.pattern.toRegex().toPattern()
@@ -20,11 +20,11 @@ open class Lexer(tokens: Set<ITokenType>) {
 
     fun lex(input: InputStream) = lex(InputStreamReader(input))
 
-    fun lex(input: Readable) = object : Sequence<Token> {
+    fun lex(input: Readable) = object : Sequence<TokenInstance> {
 
-        override fun iterator(): Iterator<Token> {
+        override fun iterator(): Iterator<TokenInstance> {
 
-            return object : Iterator<Token> {
+            return object : Iterator<TokenInstance> {
 
                 private val scanner = Scanner(input).useDelimiter("")
                 private var currentPos = 0
@@ -33,7 +33,7 @@ open class Lexer(tokens: Set<ITokenType>) {
 
                 override fun hasNext() = scanner.hasNext()
 
-                override fun next(): Token {
+                override fun next(): TokenInstance {
                     for ((type, pattern) in patterns) {
                         try {
                             scanner.skip(pattern)
@@ -42,7 +42,7 @@ open class Lexer(tokens: Set<ITokenType>) {
                         }
                         val match = scanner.match().group()
 
-                        val result = Token(type, match, currentPos, currentRow, currentCol)
+                        val result = TokenInstance(type, match, currentPos, currentRow, currentCol)
 
                         currentPos += match.length
 
