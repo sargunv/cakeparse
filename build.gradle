@@ -93,5 +93,3 @@ publishing {
         }
     }
 }
-
-afterReleaseBuild.dependsOn bintrayUpload
