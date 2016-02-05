@@ -10,7 +10,7 @@ Documentation is available at the project's [GitHub Page](http://sargunvohra.me/
 
 ## Build
 
-This project uses [Kobalt](http://beust.com/kobalt/home/index.html) for its build system. Simply clone the repository and run `./kobaltw assemble`. If that doesn't work, try `./kobaltw clean test assemble`
+This project uses [Gradle](http://gradle.org) for its build system. Simply clone the repository and run `./gradlew build`.
 
 ## Contribute
 
