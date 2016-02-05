@@ -1,5 +1,6 @@
 buildscript {
 	ext {
+		name = 'CakeParse'
 		kotlinVersion = '1.0.0-rc-1036'
 		cucumberVersion = '1.2.4'
 		cakeParseVersion = '1.0.1'
@@ -48,7 +49,7 @@ bintray {
 	
     pkg {
         repo = 'maven'
-        name = 'CakeParse'
+        name = name
 		desc = 'Simple recursive descent parser combinator library for Kotlin.'
 		websiteUrl = 'http://sargunvohra.me/CakeParse/'
 		issueTrackerUrl = 'https://github.com/sargunster/CakeParse/issues'
@@ -84,8 +85,8 @@ publishing {
             artifact jar
 			artifact sourcesJar
 			artifact javadocJar
-            groupId 'me.sargunvohra.lib'
-            artifactId 'CakeParse'
+            groupId project.group
+            artifactId name
             version project.version
         }
     }
