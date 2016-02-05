@@ -88,4 +88,4 @@ publishing {
     }
 }
 
-afterReleaseBuild.dependsOn uploadBintray
+afterReleaseBuild.dependsOn bintrayUpload
