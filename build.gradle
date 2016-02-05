@@ -23,7 +23,7 @@ plugins {
 apply plugin: 'kotlin'
 apply plugin: 'maven-publish'
 
-group = me.sargunvohra.lib
+group = 'me.sargunvohra.lib'
 
 repositories {
 	jcenter()
