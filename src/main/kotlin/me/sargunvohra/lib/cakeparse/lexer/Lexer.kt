@@ -13,12 +13,12 @@ import java.util.*
  */
 class Lexer(tokens: Set<Token>) {
 
-    private val patterns = tokens.associate {
-        it to it.pattern.toRegex().toPattern()
+    private val patterns = tokens.filter { it.pattern != null }.associate {
+        it to it.pattern!!.toRegex().toPattern()
     }
 
     init {
-        require(tokens.isNotEmpty()) { "Must provide at least one token" }
+        require(patterns.isNotEmpty()) { "Must provide at least one token with a pattern" }
     }
 
     /**
