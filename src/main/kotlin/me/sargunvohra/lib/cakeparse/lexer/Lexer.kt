@@ -13,7 +13,7 @@ import java.util.*
  */
 class Lexer(tokens: Set<Token>) {
 
-    private val patterns = tokens.toMap {
+    private val patterns = tokens.associate {
         it to it.pattern.toRegex().toPattern()
     }
 

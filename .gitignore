@@ -1,15 +1,22 @@
 
 local.properties
 
-### Kobalt ###
-.kobalt
-kobaltBuild/
 
-# Avoid ignoring Kobalt wrapper jar file (.jar files are usually ignored)
-!kobalt-wrapper.jar
+# Created by https://www.gitignore.io/api/linux,windows,osx,intellij,gradle
 
+### Gradle ###
+.gradle
+build/
 
-# Created by https://www.gitignore.io/api/linux,windows,osx,intellij
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
 
 ### Linux ###
 *~
