@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/sargunster/CakeParse.svg?branch=master)](https://travis-ci.org/sargunster/CakeParse)[![codecov.io](https://codecov.io/github/sargunster/CakeParse/coverage.svg?branch=master)](https://codecov.io/github/sargunster/CakeParse?branch=master)[ ![Download](https://api.bintray.com/packages/sargunster/maven/CakeParse/images/download.svg) ](https://bintray.com/sargunster/maven/CakeParse/_latestVersion)
+[![Build Status](https://travis-ci.org/sargunster/CakeParse.svg?branch=master)](https://travis-ci.org/sargunster/CakeParse)
+[![codecov.io](https://codecov.io/github/sargunster/CakeParse/coverage.svg?branch=master)](https://codecov.io/github/sargunster/CakeParse?branch=master)
+[![Download](https://api.bintray.com/packages/sargunster/maven/CakeParse/images/download.svg)](https://bintray.com/sargunster/maven/CakeParse/_latestVersion)
 
 # CakeParse
 
