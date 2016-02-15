@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.0.0-rc-1036'
+		kotlinVersion = '1.0.0'
 		cucumberVersion = '1.2.4'
 		cakeParseVersion = '1.0.1'
 		junitVersion = '4.12'
