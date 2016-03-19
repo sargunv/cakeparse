@@ -4,8 +4,10 @@ import com.beust.kobalt.plugin.publish.bintray
 
 object Versions {
     val kotlin = "1.0.1"
+    val testng = "6.9.9"
 }
 
+@Suppress("unused")
 val p = project {
 
     name = "CakeParse"
@@ -19,6 +21,7 @@ val p = project {
 
     dependenciesTest {
     	compile("org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}")
+        compile("org.testng:testng:${Versions.testng}")
     }
 
     assemble {
