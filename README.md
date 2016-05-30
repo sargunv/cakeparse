@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/sargunster/CakeParse.svg?branch=master)](https://travis-ci.org/sargunster/cakeparse)
-[![Download](https://api.bintray.com/packages/sargunster/maven/CakeParse/images/download.svg)](https://bintray.com/sargunster/maven/cakeparse/_latestVersion)
+[![Build Status](https://travis-ci.org/sargunster/cakeparse.svg?branch=master)](https://travis-ci.org/sargunster/cakeparse)
+[![Download](https://api.bintray.com/packages/sargunster/maven/cakeparse/images/download.svg)](https://bintray.com/sargunster/maven/cakeparse/_latestVersion)
 
 # CakeParse
 
