@@ -3,7 +3,7 @@ package me.sargunvohra.lib.common
 import java.util.*
 
 /**
- * A caching sequence which stores the values from the source sequence as they are generated. The Next time those values
+ * A caching sequence which stores the values from the source sequence as they are generated. The next time those values
  * are requested, they are returned from the cache instead of requested from the original sequence.
  *
  * @param T the type of the members of this sequence.
