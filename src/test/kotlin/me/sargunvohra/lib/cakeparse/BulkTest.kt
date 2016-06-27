@@ -1,7 +1,7 @@
 package me.sargunvohra.lib.cakeparse
 
 import me.sargunvohra.lib.cakeparse.api.*
-import org.junit.Test
+import org.testng.annotations.Test
 import kotlin.test.assertEquals
 
 class BulkTest {
