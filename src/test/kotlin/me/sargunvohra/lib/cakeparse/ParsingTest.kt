@@ -6,11 +6,15 @@ import kotlin.test.assertEquals
 
 class ParsingTest {
 
-    fun parse(input: String) = Calc.allTokens.lexer().lex(input).parseToEnd(Calc.Rules.expr).value
+    private fun lex(input: String) = Calc.allTokens.lexer().lex(input)
 
-    fun parseZeroPlus(input: String) = Calc.allTokens.lexer().lex(input).parseToEnd(zeroOrMore(Calc.Rules.expr before Calc.Tokens.newline)).value
+    private fun parse(input: String) = lex(input).parseToEnd(Calc.Rules.expr).value
 
-    fun parseOnePlus(input: String) = Calc.allTokens.lexer().lex(input).parseToEnd(oneOrMore(Calc.Rules.expr before Calc.Tokens.newline)).value
+    private fun parseZeroPlus(input: String) = lex(input).parseToEnd(zeroOrMore(Calc.Rules.expr before Calc.Tokens.newline)).value
+
+    private fun parseOnePlus(input: String) = lex(input).parseToEnd(oneOrMore(Calc.Rules.expr before Calc.Tokens.newline)).value
+
+    private fun parseRepeat(n: Int, input: String) = lex(input).parseToEnd(repeat(n, Calc.Rules.expr before Calc.Tokens.newline)).value
 
     @Test
     fun simple() = assertEquals(2, parse("1+1"))
@@ -35,4 +39,7 @@ class ParsingTest {
 
     @Test
     fun manyToOnePlus() = assertEquals(listOf(2, 128, -72), parseOnePlus("1+1\n(5 + 123)\n3 * (6-12) * 4\n"))
+
+    @Test
+    fun repeat() = assertEquals(listOf(2, 128, -72), parseRepeat(3, "1+1\n(5 + 123)\n3 * (6-12) * 4\n"))
 }

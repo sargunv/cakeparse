@@ -4,6 +4,7 @@ import me.sargunvohra.lib.cakeparse.exception.ParseException
 import me.sargunvohra.lib.cakeparse.parser.Parser
 import me.sargunvohra.lib.cakeparse.parser.BaseParser
 import me.sargunvohra.lib.cakeparse.parser.Result
+import java.util.*
 
 /**
  * Create a new parser by combining two parsers. The new parser tries to satisfy both this parser and the provided
@@ -55,3 +56,41 @@ infix fun <A, B> Parser<A>.then(other: Parser<B>) = this and other map { it.seco
  * Like [and], but only returns the result to the left.
  */
 infix fun <A, B> Parser<A>.before(other: Parser<B>) = this and other map { it.first }
+
+/**
+ * Create a parser that tries to satisfy the provided parser at least [n] number of times.
+ *
+ * @param n the minimum number of times to repeat the target parser.
+ * @param target the target parser to repeat.
+ *
+ * @return the new parser that parses a sequence of [target] at least [n] times.
+ */
+fun <A> atLeast(n: Int, target: Parser<A>): Parser<List<A>> = BaseParser { input ->
+    var (list, remainder) = repeat(n, target).eat(input)
+    list = LinkedList<A>(list)
+    do {
+        val (next, r) = optional(target).eat(remainder)
+        if (next != null) list.add(next)
+        remainder = r
+    } while (next != null)
+    Result(Collections.unmodifiableList(list), remainder)
+}
+
+/**
+ * Create a parser that tries to satisfy the provided parser exactly [n] number of times.
+ *
+ * @param n the number of times to repeat the target parser
+ * @param target the target parser to repeat
+ *
+ * @return the new parser that parses a sequence of [target] exactly [n] times
+ */
+fun <A> repeat(n: Int, target: Parser<A>): Parser<List<A>> = BaseParser { input ->
+    val list = LinkedList<A>()
+    var remainder = input
+    repeat(n) {
+        val next = target.eat(remainder)
+        remainder = next.remainder
+        list.add(next.value)
+    }
+    Result(Collections.unmodifiableList(list), remainder)
+}
