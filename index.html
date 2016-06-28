@@ -86,6 +86,10 @@ dependencies {
 <code>a before b</code>: Just like <code>and</code>, but return the result of <code>a</code>.</li>
 <li>
 <code>a map { /* transformer */ }</code>: Just like <code>a</code>, but map the result to a new result using the transformer.</li>
+<li>
+<code>repeat(n, a)</code>: Match <code>a</code> in a sequence <strong>exactly</strong> <code>n</code> times, and return a result containing a list of all the matches.</li>
+<li>
+<code>atLeast(n, a)</code>: Just like <code>repeat</code>, but match <strong>at least</strong> <code>n</code> times</li>
 </ul>
 
 <p>There are also a number of convenience parsers:</p>
@@ -95,8 +99,6 @@ dependencies {
 <code>empty&lt;T&gt;()</code>: Match an empty input and return a <code>null</code> result of type <code>T</code>. </li>
 <li>
 <code>optional(a)</code>: Match <code>a</code> if possible, otherwise return <code>null</code>.</li>
-<li>
-<code>atLeast(n, a)</code>: Match <code>a</code> in a sequence at least <code>n</code> times, and return a result containing a list of all the matches.</li>
 <li>
 <code>zeroOrMore(a)</code>: Just like <code>atLeast(0, a)</code>
 </li>
