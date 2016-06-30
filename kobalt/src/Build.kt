@@ -3,8 +3,8 @@ import com.beust.kobalt.plugin.packaging.assemble
 import com.beust.kobalt.plugin.publish.bintray
 
 object Versions {
-    val kotlin = "1.0.2-1"
-    val testng = "6.9.9"
+    val kotlin = "1.0.3"
+    val testng = "6.9.10"
 }
 
 @Suppress("unused")
