@@ -13,7 +13,7 @@ val p = project {
     name = "cakeparse"
     group = "me.sargunvohra.lib"
     artifactId = name
-    version = "1.1.0"
+    version = "1.1.1"
 
     dependencies {
     	compile("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
