@@ -7,11 +7,11 @@ CakeParse is a simple parser combinator library for [Kotlin](https://kotlinlang.
 
 ## Documentation
 
-Documentation is available at the project's [GitHub Page](http://sargunv.github.io/cakeparse/).
+Documentation is available at the project's [GitHub Page](https://sargunv.github.io/cakeparse/).
 
 ## Build
 
-This project uses [Kobalt](http://beust.com/kobalt/) for its build system. Simply clone the repository and run `./kobaltw compile`.
+This project uses [Kobalt](https://beust.com/kobalt/) for its build system. Simply clone the repository and run `./kobaltw compile`.
 
 ## Contribute
 
